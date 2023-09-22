@@ -1,0 +1,62 @@
+<h6>DASHBOARD</h6>
+<h3>Welcome {{name}}</h3>
+
+<h6>BumpBooks is a platform that empowers storytellers to share their tales with an eager audience. The dashboard serves as a versatile hub for authors to oversee and manage their stories and profile.</h6>
+<div class="divider"></div>
+
+<div class="row">
+    <form action="/dashboard/{{userId}}" method="POST" class="col s12">
+        <input type="hidden" name="_method" value="PUT">
+        
+        <div class="row">
+            <div class="input-field col s12">
+                <p>Edit your profile:</p>
+                <textarea id="profileDesc" name="profileDesc" class="materialize-textarea">{{profileDesc}}</textarea>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col s12">
+                <button type="submit" class="btn waves-effect waves-light">Update</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+{{#if stories}}
+<p>Manage your stories:</p>
+    <table class="striped dashboard-table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each stories}}
+                <tr>
+                    <td><a href="/stories/{{_id}}">{{title}}</a></td>
+                    <td>{{formatDate createdAt 'MMMM Do YYYY'}}</td>
+                    <td><span class="dash-status">{{status}}</span></td>
+                    <td>
+                        <a href="/stories/edit/{{_id}}" class="btn btn-float edit-btn">
+                            <i class="fas fa-edit"></i>
+                        </a>
+
+                        <form action="/stories/{{_id}}" method="POST" id="delete-form">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit" class="btn red">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+{{else}}
+    <p>You have not created any stories. <a href = "/stories/add">Create</a> one now!</p>
+{{/if}}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A story sharing website where users can create and share stories for the community">
+    <link rel="icon" href="/images/bumpbook-logo.png" type="image/png">
+    {{!-- Open graph protocols --}}
+    <meta property="og:title" content="BumpBooks">
+    <meta property="og:description" content="Create and share stories with the community">
+    <meta property="og:image" content="/images/bumpbook-logo.png">
+    <meta property="og:url" content="https://www.example.com/shared-url">
+    {{!-- materialise --}}
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+      {{!-- font awesome --}}
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css"
+        integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />
+        <link rel="stylesheet" href="/css/style.css">
+    <title>BumpBooks Login</title>
+</head>
+<body class = "login-page">
+    <div class="container login-container col s12 m6">
+        <div class="card login-card">
+            <div class="card-content login-content">
+                {{{body}}}  
+            </div>
+        </div>
+    </div>
+    {{!-- maerialise --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

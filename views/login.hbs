@@ -1,0 +1,24 @@
+<h1><img src="/images/bumpbook-logo.png" class="login-brand-img"> Login</h1>
+    <div class="section">
+    <form action="/auth/login" method="POST">
+        <div class = "input-field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class = "input-field">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="row">
+            <input type="submit" value="Login" class=" login-btn btn">
+            <p>Don't have an account? <a href="/signUp" class = "accountQuery">Sign Up</a></p> 
+        </div>
+    </form>
+</div>
+<div class="divider"></div>
+ <div class="section">
+    <a href="/auth/google" class="btn red darken-1 login-btn">
+    <i class="fab fa-google left"></i> Login with Google
+    </a>
+    <a href="/privacy" class "btn blue">Privacy Policy</a>
+</div>

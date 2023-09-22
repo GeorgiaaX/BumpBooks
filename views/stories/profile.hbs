@@ -1,0 +1,38 @@
+<h6>PROFILE</h6>
+<div class="card">
+    <div class="card-image">
+        <img src = "/images/profile.png">
+    </div>
+    <div class="card-content center-align">
+            <h1>{{name}}</h1>
+            <p class = "profile-desc left-align">{{stripTags profileDesc}}</p>
+    </div>
+</div>
+
+<h3>Stories</h3>
+<div class="col">
+    {{#each stories}}
+        <div class="row s12 m4">
+            <div class="card">
+                <div class="card-image">
+                        <img src = "/images/{{tags}}.png">
+                        <span class="card-title">#{{tags}}</span>
+                        <a>{{{editIcon user ../user _id}}}</a>
+                    </div>
+                <div class="card-content">
+                    <br>
+                    <h5>{{title}}</h5>
+                    <span id="date-title">{{formatDate createdAt 'MMMM Do YYYY'}}</span>
+                    <p>{{stripTags (truncate description 250)}}</p>
+                    <p class="bump-count">{{bumps}} Bumps</p>
+                </div> 
+                <div class="card-action center-align">
+                    <a href="/stories/{{_id}}" class="btn grey">Read</a>
+                </div>  
+            </div>
+        </div>
+    {{else}}
+        <p>No Stories to Display</p>
+    {{/each}}
+</div>
+

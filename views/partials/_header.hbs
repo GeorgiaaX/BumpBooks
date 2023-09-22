@@ -1,0 +1,41 @@
+<ul id='dropdown1' class='dropdown-content'>
+    <li><a href="/stories">RECENT</a></li>
+    <li><a href="/stories/bumped">RANKINGS</a></li>
+</ul>
+
+<nav class="grey darken-3" style="padding-top: 8px; height: 70px">
+    <div class="nav-wrapper container">
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger show-on-large"><i class="fas fa-bars"></i></a>
+        <ul class="sidenav" id="mobile-demo">
+            <li><a href="/dashboard">DASHBOARD</a></li>
+            <li><a href = "/stories/add">CREATE</a></li>  
+            <li><a href="/userProfile">PROFILE</a></li>
+            <li><a class='dropdown-trigger' href='#' data-target='dropdown1'>STORIES</a></li>
+            <li><a href="/auth/logout">LOGOUT</a></li>
+        </ul>
+
+            <a href = "#" class = "brand-logo center brand"><img src="/images/bumpbook-logo.png" class = "brand-img"> BumpBooks</a>
+
+
+  <!-- Left-aligned items -->
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li><a href="/dashboard">DASHBOARD</a></li>
+            <li><a href="/stories/add">CREATE</a></li>
+        </ul>
+
+        <!-- Right-aligned items -->
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="/userProfile">PROFILE</a></li>
+            <li>
+                <a class="dropdown-trigger btn" href="#" data-target="dropdown2">STORIES</a>
+                <ul id="dropdown2" class="dropdown-content">
+                    <li><a href="/stories">RECENT</a></li>
+                    <li><a href="/stories/bumped">RANKINGS</a></li>
+                </ul>
+            </li>
+            <li><a href="/auth/logout">LOGOUT</a></li>
+        </ul>
+    </div>
+</nav>
+
+

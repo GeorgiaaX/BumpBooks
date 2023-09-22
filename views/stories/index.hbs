@@ -1,0 +1,32 @@
+<h6>STORIES</h6>
+<h1>Recent Stories</h1>
+    <div class="col">
+        {{#each stories}}
+            <div class="row s12 m6">
+                <div class="card">
+                    <div class="card-image">
+                        <img src = "images/{{tags}}.png">
+                        <span class="card-title">#{{tags}}</span>
+                        <a>{{{editIcon user ../user _id}}}</a>
+                    </div>
+                    <div class="card-content">
+                        <div class="chip">
+                            <img src="{{user.image}}" alt="">
+                            <a href="/stories/user/{{user._id}}">{{user.displayName}}</a>
+                        </div>
+                            <br>
+                            <h5>{{title}}</h5>
+                            <span id="date-title">{{formatDate createdAt 'MMMM Do YYYY'}}</span>
+                            <p>{{stripTags  (truncate description 250)}}</p>
+                            <p class="bump-count">{{bumps}} Bumps</p>
+                    </div>
+                    <div class="card-action center-align">
+                        <a href="/stories/{{_id}}" class = "btn grey">Read</a>
+                    </div>
+                </div>
+            </div>
+        {{else}}
+            <p>No stories to display</p>
+        {{/each}}
+    </div>
+

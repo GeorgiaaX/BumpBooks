@@ -1,0 +1,39 @@
+<h6>BUMPS</h6>
+<h1>Bump Rankings</h1>
+{{#if stories}}
+    <table class="striped">
+        <thead>
+            <tr> 
+                <th>Rank</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Bumps</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each stories}}
+                <tr>
+                      <td>#{{addIndex @index}}</td>
+                    <td>{{title}}</td>
+                    <td>
+                        <a href="/stories/user/{{user._id}}">{{user.displayName}}</a>
+                    </td>
+                    <td><span class="bump-count">{{bumps}} Bumps</span></td>
+                    <td>
+                       <div class="card-action center-align">
+                        <a href="/stories/{{_id}}" class = "btn grey">Read</a>
+                    </div>
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+{{else}}
+    <p>No stories to display</p>
+{{/if}}
+
+
+
+
+

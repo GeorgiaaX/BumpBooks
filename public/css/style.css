@@ -1,0 +1,134 @@
+p {
+    margin: 14px 0 !important;
+    font-size: 20px;
+}
+
+h6 {
+    margin: 14px 0 !important;
+}
+
+.login-container {
+    width: auto;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.brand-img {
+    width: 50px;
+    height: 40px;
+}
+
+
+.fa-small {
+    font-size: 16px !important
+}
+
+.btn-float {
+    float: left;
+    margin-right: 10px;
+}
+
+
+.img-small {
+    width: 180px;
+}
+
+.date-title {
+    font-size: 10px !important
+}
+
+.bump-count {
+    font-size: 16px !important;
+    color: #ff9800 
+}
+
+#bump-btn {
+    margin-bottom: 20px !important
+}
+
+.chip {
+    font-size: 16px !important
+}
+
+.login-brand-img {
+    width: 80px;
+    height: 60px;
+}
+
+.profile-desc {
+    font-size: 20px !important;
+}
+
+.login-page { 
+    background-image: url('../images/profile.png');
+    background-repeat: no-repeat;
+}
+
+
+.container.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.dashboard-table {
+    margin-bottom: 50px;
+}
+
+.login-btn {
+    margin-bottom: 10px;
+    margin-right: 10px;
+
+}
+
+.story {
+    padding-bottom: 20px;;
+}
+
+.edit-btn {
+    margin-bottom: 5px;
+}
+
+.accountQuery {
+    color: #ff9800
+}
+
+@media screen and (max-width: 760px) {
+    .login-page{
+        flex-direction: column;
+        text-align: center;
+        background-image: url('/images/login-background.png');
+        background-repeat: repeat;
+    }
+
+    .login-card {
+        min-width: auto;
+        min-height: auto;
+    }
+
+    .login-brand-img {
+        width: 50px;
+        height: 40px;
+        margin-right: 0;
+    }
+
+    .fixed-action-btn {
+        display: none;
+    }
+
+    .edit-btn {
+        margin-bottom: 5px;
+    }
+
+}
+
+@media screen and (max-width: 1150px) {
+
+    .right.hide-on-med-and-down,
+    .left.hide-on-med-and-down {
+      display: none;
+    }
+  }
+
+
