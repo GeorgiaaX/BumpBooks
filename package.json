@@ -4,8 +4,7 @@
   "description": "Create, Personalise and Share Lists",
   "main": "app.js",
   "scripts": {
-    "start": "NODE_ENV=production node app",
-    "dev": "NODE_ENV=development nodemon app"
+    "start": "node server.js"
   },
   "author": "",
   "license": "MIT",
