@@ -1,5 +1,12 @@
 <h1><img src="/images/bumpbook-logo.png" class="login-brand-img"> Sign up</h1>
     <div class="section login-container">
+          {{!-- {{#if messages.local.errors}}
+            <div class="alert alert-danger">
+                {{#each messages.errors}}
+                <p>{{this.msg}}</p>
+                {{/each}}
+            </div>
+        {{/if}} --}}
     <form action="/auth/signUp" method="POST">
         <div class = "input-field">
             <label for = "displayName">Display Name</label>
