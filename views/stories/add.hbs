@@ -3,37 +3,37 @@
 <div class="row">
     <form action="/stories" method="POST" class="col s12">
         <div class="row">
-            <div class="input-field">
+            <div class="input-field col s12">
                 <input type="text" id="title" name="title" required>
                 <label for="title">Title</label>
             </div>
         </div>
 
-         <div class="row">
-            <div class="input-field">
-                <input type="text" id="description" name="description" maxlength = "250" required>
+        <div class="row">
+            <div class="input-field col s12">
+                <input type="text" id="description" name="description" maxlength="250" required>
                 <label for="description">Description</label>
             </div>
         </div>
 
-         <div class="row">
-            <div class="input-field">
-                <select id="tags" name="tags">
-                    <option class = "select" value="general" selected>General</option>
-                    <option class = "select" value="romance">Romance</option>
-                    <option class = "select" value="fantasy">Fantasy</option>
-                    <option class = "select" value="sci-fi">Sci-fi</option>
-                    <option class = "select" value="mystery">Mystery</option>
-                    <option class = "select" value="horror">Horror</option>
-                    <option class = "select" value="comedy">Comedy</option>
+        <div class="row">
+            <div class="input-field col s12">
+                <select id="tags" name="tags" class="browser-default">
+                    <option class="select" value="general" selected>General</option>
+                    <option class="select" value="romance">Romance</option>
+                    <option class="select" value="fantasy">Fantasy</option>
+                    <option class="select" value="sci-fi">Sci-fi</option>
+                    <option class="select" value="mystery">Mystery</option>
+                    <option class="select" value="horror">Horror</option>
+                    <option class="select" value="comedy">Comedy</option>
                 </select>
                 <label for="tags">Tags</label>
             </div>
         </div>
 
         <div class="row">
-            <div class="input-field">
-                <select id="status" name="status">
+            <div class="input-field col s12">
+                <select id="status" name="status" class="browser-default">
                     <option value="public" selected>Public</option>
                     <option value="private">Private</option>
                 </select>
@@ -41,17 +41,20 @@
             </div>
         </div>
 
-
         <div class="row">
-            <div class="input-field">
+            <div class="input-field col s12">
                 <h5>Your Story:</h5>
-                <textarea id="body" name="body" required></textarea>
+                <textarea id="body" name="body" class="materialize-textarea" required></textarea>
             </div>
         </div>
 
         <div class="row">
-            <input type="submit" value="Save" class="btn">
-            <a href="/dashboard" class="btn orange">Cancel</a>
+            <div class="col s6">
+                <button type="submit" class="btn">Save</button>
+            </div>
+            <div class="col s6">
+                <a href="/dashboard" class="btn orange">Cancel</a>
+            </div>
         </div>
     </form>
 </div>
