@@ -94,6 +94,8 @@ h6 {
     color: #ff9800
 }
 
+
+
 @media screen and (max-width: 760px) {
     .login-page{
         flex-direction: column;
@@ -120,8 +122,6 @@ h6 {
     .edit-btn {
         margin-bottom: 5px;
     }
-
-
 
 }
 
