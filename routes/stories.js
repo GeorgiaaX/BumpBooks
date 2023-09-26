@@ -1,3 +1,4 @@
+//import modules and dependencies
 const express = require('express')
 const app = express()
 const router = express.Router()
@@ -173,30 +174,57 @@ router.delete('/:id', ensureAuth, async (req,res) => {
     }
 })
 
-// @desc    Profile User stories
-// @route   GET /stories/user/:userId
-router.get('/user/:userId', ensureAuth, async (req, res) => {  
-    try {
 
+
+// @desc  Define a route to display a user's profile
+// @route   GET /stories/user/:userId
+
+router.get('/user/:userId', ensureAuth, async (req, res) => {
+           // Use a try-catch block to handle potential errors
+    
+           try {
+        // Find the user by their user ID (from the route parameter)
+        const user = await User.findById(req.params.userId);
+
+        if (!user) {
+            // Handle the case where the user with the specified ID is not found
+            return res.status(404).render('error/404');
+        }
+
+        // Find public stories associated with the specified user
         const stories = await Story.find({
-            user: req.params.userId,
-            status: 'public',
+            user: req.params.userId, // User ID is obtained from the route parameter
+            status: 'public', // Filter by public stories
         })
-            .populate('user')
-            .sort( { createdAt : 'desc'})
-            .lean()
+        .sort({ createdAt: 'desc' }) // Sort stories by creation date in descending order
+        .lean(); // Convert MongoDB documents to plain JavaScript objects
+
+        // Render the 'stories/profile' Handlebars template with user data and stories
         res.render('stories/profile', {
-            userId: req.user.userId,
-            name: req.user.displayName,
-            image: req.user.image,
-            profileDesc: req.user.profileDesc,
-            stories
-        })
+            userId: user.userId, // User ID of the clicked-on user
+            name: user.displayName, // Display name of the clicked-on user
+            image: user.image, // Clicked-on user's profile image
+            profileDesc: user.profileDesc, // Clicked-on user's profile description
+            stories // Public stories associated with the clicked-on user
+        });
     } catch (err) {
-        console.error(err)
-        res.render('error/500')
+        // Handle errors by rendering an error page (e.g., 'error/500')
+        console.error(err);
+        res.render('error/500');
     }
-  })
+});
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
