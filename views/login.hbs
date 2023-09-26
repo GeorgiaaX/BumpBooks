@@ -1,5 +1,14 @@
 <h1><img src="/images/bumpbook-logo.png" class="login-brand-img"> Login</h1>
     <div class="section">
+       {{#if validationErrors}}
+            <div class="alert alert-danger">
+                 <ul>
+                    {{#each validationErrors}}
+                        <li>{{this.msg}}</li>
+                    {{/each}}
+                </ul>
+            </div>
+         {{/if}}
     <form action="/auth/login" method="POST">
         <div class = "input-field">
             <label for="email">Email</label>
@@ -17,8 +26,8 @@
 </div>
 <div class="divider"></div>
  <div class="section">
-    <a href="/auth/google" class="btn red darken-1 login-btn">
+    {{!-- <a href="/auth/google" class="btn red darken-1 login-btn">
     <i class="fab fa-google left"></i> Login with Google
-    </a>
+    </a> --}}
     <a href="/privacy" class "btn blue">Privacy Policy</a>
 </div>

@@ -81,7 +81,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 //Set up flash
-app.use(flash());
+// app.use(flash());
 
 //set global variable
 app.use(function (req, res, next) {

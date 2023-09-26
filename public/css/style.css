@@ -8,7 +8,7 @@ h6 {
 }
 
 .login-container {
-    width: auto;
+    width: 400px;
     margin-top: 50px;
     text-align: center;
 }
@@ -93,22 +93,6 @@ h6 {
 .accountQuery {
     color: #ff9800
 }
-
-
-#tags {
-    margin: 0 /* Set margin to zero */ !important;
-    padding: 0 /* Set padding to zero */ !important;
-  }
-  
-  /* Override Materialize CSS for the select label */
-  #tags + label {
-    margin-top: 0  /* Set top margin to zero */ !important;
-  }
-  
-  /* Override Materialize CSS for select options */
-  #tags option {
-    padding: 10px 0 /* Adjust the padding as needed */ !important;
-  }
 
 
 @media screen and (max-width: 760px) {

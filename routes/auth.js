@@ -23,67 +23,63 @@ passport.authenticate('google', {failureRedirect: '/'}), (req,res) => {
 
 //@desc route for user Login Auth
 //route POST / login
-
+//@desc route for user Login Auth
+//route POST / login
 router.post('/login', ensureGuest, (req, res, next) => {
-    const validationErrors = []
+    const validationErrors = [];
+    
+    // Normalize the email address, get rid of gmail dots
+    req.body.email = validator.normalizeEmail(req.body.email, { gmail_remove_dots: false })
 
-    //validation checks
-    if (!validator.isEmail(req.body.email)) {
-        validationErrors.push({ msg: 'Please enter a valid email address.' })
-    }
-    if (validator.isEmpty(req.body.password)) {
-        validationErrors.push({ msg: 'Password cannot be blank.' })
-    }
-
-    //if there are validation errors, flash them and redirect to the login page
-    if (validationErrors.length) {
-        req.flash('errors', validationErrors)
-        return res.redirect('/login')
-      }
-
-      //normalise the email address, get rid of gmail dots
-      req.body.email = validator.normalizeEmail(req.body.email, { gmail_remove_dots: false })
-
-      //Authenticaate the user using Passport's local strategy
-    passport.authenticate('local', (err, user, info) => {
+    // Authenticate the user using Passport's local strategy
+    passport.authenticate('local', (err, user) => {
         if (err) { return next(err) }
         if (!user) {
-            //if authentication fails, flash an error message and redirect to the login page
-            req.flash('errors', info)
-            return res.redirect('/login')
+            // Flash an error message for wrong username or password
+            validationErrors.push({ msg: 'Invalid username or password.' });
+
+            // Render the login template with validation errors
+            return res.render('login', {
+                layout: 'landing',
+                validationErrors
+            });
         }
-        //if authentication succeeds, log in the user
+
+        // If authentication succeeds, log in the user
         req.logIn(user, (err) => {
             if (err) { return next(err) }
-            //Flash a success message and redirect to the user's dashboard
-            req.flash('success', { msg: 'Success! You are logged in.' })
-            res.redirect(req.session.returnTo || '/dashboard')
-         })
-    })(req, res, next)
-})
+
+            res.redirect(req.session.returnTo || '/dashboard');
+        });
+    })(req, res, next);
+});
 
 
 //@desc route for user Signup Auth
 //@route POST /signUp
 router.post('/signUp', ensureGuest, async (req, res, next) => {
-    const validationErrors = [];
-
-    // Validation checks
-    if (!validator.isEmail(req.body.email)) {
-        validationErrors.push({ msg: 'Please enter a valid email address.' });
-    }
-    if (!validator.isLength(req.body.password, { min: 8 })) {
-        validationErrors.push({ msg: 'Password must be at least 8 characters long' });
-    }
-    if (req.body.password !== req.body.confirmPassword) {
-        validationErrors.push({ msg: 'Passwords do not match' });
-    }
-
-    if (validationErrors.length > 0) {
-        req.flash('errors', validationErrors); // Store validation errors in flash
-        return res.redirect('/signUp');
-    }
-
+        const validationErrors = [];
+    
+        // Validation checks
+        if (!validator.isEmail(req.body.email)) {
+            validationErrors.push({ msg: 'Please enter a valid email address.' });
+        }
+        if (!validator.isLength(req.body.password, { min: 8 })) {
+            validationErrors.push({ msg: 'Password must be at least 8 characters long' });
+        }
+        if (req.body.password !== req.body.confirmPassword) {
+            validationErrors.push({ msg: 'Passwords do not match' });
+        }
+    
+        console.log("validationErrors:", validationErrors)
+    
+        if (validationErrors.length > 0) {
+            // Pass validationErrors to the template
+            return res.render('signUp',
+            { layout: 'landing',
+            validationErrors });
+        }
+    
     // Normalise the email address, remove dots from gmail address
     req.body.email = validator.normalizeEmail(req.body.email, { gmail_remove_dots: false });
 
@@ -99,8 +95,10 @@ router.post('/signUp', ensureGuest, async (req, res, next) => {
         const existingUser = await User.findOne({ email: req.body.email });
 
         if (existingUser) {
-            req.flash('errors', { msg: 'Account with that email address already exists.' });
-            return res.redirect('/signUp'); 
+            validationErrors.push({ msg: 'Account with that email address already exists. Please proceed to Login' });
+            return res.render('signUp',
+            { layout: 'landing',
+            validationErrors });
         }
 
         // Save the new user to the database
@@ -112,8 +110,7 @@ router.post('/signUp', ensureGuest, async (req, res, next) => {
                 console.error(err);
                 return next(err);
             }
-            // Flash success message
-            req.flash('success', 'Registration successful!');
+        
             res.redirect('/dashboard');
         });
     } catch (error) {
