@@ -178,7 +178,6 @@ router.delete('/:id', ensureAuth, async (req,res) => {
 
 // @desc  Define a route to display a user's profile
 // @route   GET /stories/user/:userId
-
 router.get('/user/:userId', ensureAuth, async (req, res) => {
            // Use a try-catch block to handle potential errors
     
@@ -213,19 +212,6 @@ router.get('/user/:userId', ensureAuth, async (req, res) => {
         res.render('error/500');
     }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   //@desc Update Bump

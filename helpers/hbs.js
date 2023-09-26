@@ -45,8 +45,8 @@ module.exports = {
             ' selected="selected"$&'
           )
     },
-    addIndex: function(index) {
-      return index + 1
-    }
-    
+      addIndex: function(index) {
+        return index + 1
+      }
+      
 }
