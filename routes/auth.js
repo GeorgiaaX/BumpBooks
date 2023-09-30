@@ -71,8 +71,6 @@ router.post('/signUp', ensureGuest, async (req, res, next) => {
             validationErrors.push({ msg: 'Passwords do not match' });
         }
     
-        console.log("validationErrors:", validationErrors)
-    
         if (validationErrors.length > 0) {
             // Pass validationErrors to the template
             return res.render('signUp',
