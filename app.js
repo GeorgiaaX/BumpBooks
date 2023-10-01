@@ -29,6 +29,7 @@ const app = express()
 app.use(express.urlencoded({extended: false}))
 app.use(express.json())
 
+//use method ovverride to override form methods
 app.use(methodOverride (function (req, res) {
     if (req.body && typeof req.body === "object" && '_method' in req.body ) {
         let method = req.body._method
@@ -37,7 +38,7 @@ app.use(methodOverride (function (req, res) {
     }
 }))
 
-//Morgan Logging
+//Morgan Logging for dev mode only
 if(process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'))
 }

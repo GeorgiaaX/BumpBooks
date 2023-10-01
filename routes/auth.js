@@ -3,7 +3,7 @@ const express = require('express')
 const passport = require('passport') // passport for authetication
 const validator = require('validator') //validation library
 const router = express.Router() 
-const { ensureGuest } = require('../middleware/auth') //middleware for guest user
+const { ensureGuest } = require('../middleware/auth') //middleware for guestuser authentication
 
 //import user model
 const User = require('../models/User')
@@ -21,11 +21,11 @@ passport.authenticate('google', {failureRedirect: '/'}), (req,res) => {
 }
 )
 
-//@desc route for user Login Auth
-//route POST / login
+
 //@desc route for user Login Auth
 //route POST / login
 router.post('/login', ensureGuest, (req, res, next) => {
+    //store validation errors in an array
     const validationErrors = [];
     
     // Normalize the email address, get rid of gmail dots
@@ -33,9 +33,10 @@ router.post('/login', ensureGuest, (req, res, next) => {
 
     // Authenticate the user using Passport's local strategy
     passport.authenticate('local', (err, user) => {
+        //if error return next route handler
         if (err) { return next(err) }
         if (!user) {
-            // Flash an error message for wrong username or password
+            // push error message to validationErrors array
             validationErrors.push({ msg: 'Invalid username or password.' });
 
             // Render the login template with validation errors
@@ -44,11 +45,11 @@ router.post('/login', ensureGuest, (req, res, next) => {
                 validationErrors
             });
         }
-
         // If authentication succeeds, log in the user
         req.logIn(user, (err) => {
+            //if error return next route handler
             if (err) { return next(err) }
-
+            //if success redirect user to dashboard page
             res.redirect(req.session.returnTo || '/dashboard');
         });
     })(req, res, next);
@@ -58,9 +59,10 @@ router.post('/login', ensureGuest, (req, res, next) => {
 //@desc route for user Signup Auth
 //@route POST /signUp
 router.post('/signUp', ensureGuest, async (req, res, next) => {
+        //store validation errors in an array
         const validationErrors = [];
     
-        // Validation checks
+        //Validation checks, push error messages to validationErrors array
         if (!validator.isEmail(req.body.email)) {
             validationErrors.push({ msg: 'Please enter a valid email address.' });
         }
@@ -81,7 +83,7 @@ router.post('/signUp', ensureGuest, async (req, res, next) => {
     // Normalise the email address, remove dots from gmail address
     req.body.email = validator.normalizeEmail(req.body.email, { gmail_remove_dots: false });
 
-    // Create a new user instance with the submitted data
+    // Create a new user instance with the submitted data using the mongoose user schema
     try {
         const user = new User({
             displayName: req.body.displayName,
@@ -89,10 +91,10 @@ router.post('/signUp', ensureGuest, async (req, res, next) => {
             password: req.body.password,
         });
 
-        // Check if user with the same email already exists, flash an error and redirect to signup page
+        // Check if user with the same email already exists
         const existingUser = await User.findOne({ email: req.body.email });
-
         if (existingUser) {
+            //push error message to validationErrors array if user already exists
             validationErrors.push({ msg: 'Account with that email address already exists. Please proceed to Login' });
             return res.render('signUp',
             { layout: 'landing',
@@ -108,10 +110,11 @@ router.post('/signUp', ensureGuest, async (req, res, next) => {
                 console.error(err);
                 return next(err);
             }
-        
+            //redirect the use to the dashboard page once logged in
             res.redirect('/dashboard');
         });
     } catch (error) {
+        //hanlde errors
         console.error(error);
         req.flash('errors', 'An error occurred during user registration.');
         res.redirect('/signUp');
@@ -119,20 +122,22 @@ router.post('/signUp', ensureGuest, async (req, res, next) => {
 });
 
 
-
 //@desc LogoutUser
 //@Route /auth/logout
 router.get('/logout', (req, res, next) => {
-
+    //call the logout method provided by passport.js to logout the user
     req.logout((err) => {
         if (err) {
             return next(err);
         }
+        //destroy the user session
         req.session.destroy((err) => {
             if (err) {
                 console.log('Error: Failed to destroy the session during logout.', err);
             }
+            //set the user property to null to indicate the user is no longer authenticated
             req.user = null;
+            //redirect to landing page after logout
             res.redirect('/');
         });
     });

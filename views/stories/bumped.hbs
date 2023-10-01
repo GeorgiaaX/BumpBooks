@@ -1,7 +1,9 @@
 <h6>BUMPS</h6>
 <h1>Bump Rankings</h1>
 {{#if stories}}
+    {{!-- if there are stories, display a table --}}
     <table class="striped">
+        {{!-- table header --}}
         <thead>
             <tr> 
                 <th>Rank</th>
@@ -13,15 +15,21 @@
         </thead>
         <tbody>
             {{#each stories}}
+            {{!-- Loop through each story in the stories array --}}
                 <tr>
+                    {{!-- Use add index heller to display the rank --}}
                       <td>#{{addIndex @index}}</td>
+                      {{!-- display story title --}}
                     <td>{{title}}</td>
                     <td>
+                        {{!-- display author with the lilnk to their profile --}}
                         <a href="/stories/user/{{user._id}}">{{user.displayName}}</a>
                     </td>
+                    {{!-- display the bump count --}}
                     <td><span class="bump-count">{{bumps}} Bumps</span></td>
                     <td>
                        <div class="card-action center-align">
+                        {{!-- Display a button to read the full story --}}
                         <a href="/stories/{{_id}}" class = "btn grey">Read</a>
                     </div>
                     </td>
@@ -30,6 +38,7 @@
         </tbody>
     </table>
 {{else}}
+{{!-- if there are no stories, display a message--}}
     <p>No stories to display</p>
 {{/if}}
 

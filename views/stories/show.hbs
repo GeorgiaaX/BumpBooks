@@ -1,38 +1,52 @@
+{{!-- display full text stories --}}
 <h6>STORIES</h6>
 <div class="row">
+    <div class="col s12 m4">
+        {{!-- display short user profile --}}
+        <div class="card center-align">
+            <div class="card-content">
+                {{!-- profile name --}}
+                <span class="card-title">{{story.user.displayName}}</span>
+                {{!-- profile avatar --}}
+                <img src="{{story.user.image}}" referrerpolicy="no-referrer" class="circle responsive-img img-small">
+            </div>
+            <div class="card-action">
+                {{!-- link to full user profile --}}
+                <a href="/stories/user/{{story.user._id}}">More From {{story.user.displayName}}</a>
+            </div>
+        </div>
+    </div>
     <div class="col s12 m8">
+        {{!-- title --}}
         <h3>{{story.title}}
+            {{!-- if authenticated user ID matches story user Id display an edit icon --}}
             <small>{{{editIcon story.user user story._id false}}}</small>
         </h3>
+        {{!-- display creation date --}}
         <span id="date-title">{{formatDate date 'MMMM Do YYYY'}}</span>
+        {{!-- display full story description --}}
         <h6>{{story.description}}</h6>
         <div class="card story">
             <div class="card-content">
+                {{!-- display full text of story --}}
                 {{{story.body}}}
                 <div class="card-action center-align">
                     <p>Liked this story?</p>
+                    {{!-- create a form for adding a bump --}}
                      <form action="/stories/bump/{{story._id}}" method="POST" class="col s12">
+                     {{!-- override form method from post to put to update bump value --}}
                         <input type="hidden" name="_method" value="PUT">
                             {{#if bump}}
+                            {{!-- if bump is equal to true, remove bump --}}
                                 <input type="submit" value="Remove Bump" class="btn grey">
                             {{else}}
+                            {{!-- if bump is equal to false, add bump --}}
                                 <input type="submit" value="Bump" class="btn orange">
                             {{/if}}
                     </form>
                 </div>  
             </div>
         </div> 
-    </div>
-    <div class="col s12 m4">
-        <div class="card center-align">
-            <div class="card-content">
-                <span class="card-title">{{story.user.displayName}}</span>
-                <img src="{{story.user.image}}" referrerpolicy="no-referrer" class="circle responsive-img img-small">
-            </div>
-            <div class="card-action">
-                <a href="/stories/user/{{story.user._id}}">More From {{story.user.displayName}}</a>
-            </div>
-        </div>
     </div>
 </div>
 

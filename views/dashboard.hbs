@@ -1,20 +1,22 @@
 <h6>DASHBOARD</h6>
+{{!-- authenticated user dashboard --}}
 <h3>Welcome {{name}}</h3>
 
 <h6>BumpBooks is a platform that empowers storytellers to share their tales with an eager audience. The dashboard serves as a versatile hub for authors to oversee and manage their stories and profile.</h6>
 <div class="divider"></div>
 
 <div class="row">
+    {{!-- form for profile edit --}}
     <form action="/dashboard/{{userId}}" method="POST" class="col s12">
         <input type="hidden" name="_method" value="PUT">
-        
+        {{!-- override form mehthod from post to put to edit description --}}
         <div class="row">
             <div class="input-field col s12">
                 <p>Edit your profile:</p>
                 <textarea id="profileDesc" name="profileDesc" class="materialize-textarea">{{profileDesc}}</textarea>
             </div>
         </div>
-        
+        {{!-- Sumbit button to update --}}
         <div class="row">
             <div class="col s12">
                 <button type="submit" class="btn waves-effect waves-light">Update</button>
@@ -25,9 +27,11 @@
 
 
 {{#if stories}}
+{{!-- check if user has stories and display in a table--}}
 <p>Manage your stories:</p>
     <table class="striped dashboard-table">
         <thead>
+            {{!-- table header --}}
             <tr>
                 <th>Title</th>
                 <th>Date</th>
@@ -37,17 +41,24 @@
         </thead>
         <tbody>
             {{#each stories}}
+            {{!-- loop through each story and display--}}
                 <tr>
+                    {{!-- display title --}}
                     <td><a href="/stories/{{_id}}">{{title}}</a></td>
+                    {{!-- display creation date --}}
                     <td>{{formatDate createdAt 'MMMM Do YYYY'}}</td>
+                    {{!-- display status --}}
                     <td><span class="dash-status">{{status}}</span></td>
                     <td>
+                        {{!-- display edit button --}}
                         <a href="/stories/edit/{{_id}}" class="btn btn-float edit-btn">
                             <i class="fas fa-edit"></i>
                         </a>
-
+                        {{!-- cretae form to delete story --}}
                         <form action="/stories/{{_id}}" method="POST" id="delete-form">
+                            {{!-- override form method from post to delete --}}
                             <input type="hidden" name="_method" value="DELETE">
+                            {{!-- display delete button --}}
                             <button type="submit" class="btn red">
                                 <i class="fas fa-trash"></i>
                             </button>
@@ -58,5 +69,6 @@
         </tbody>
     </table>
 {{else}}
+{{!-- if there are no stories, display message and create link --}}
     <p>You have not created any stories. <a href = "/stories/add">Create</a> one now!</p>
 {{/if}}

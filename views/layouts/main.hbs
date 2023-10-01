@@ -11,12 +11,12 @@
     <meta property="og:image" content="/images/bumpbook-logo.png">
     <meta property="og:url" content="https://tough-tick-jersey.cyclic.cloud/">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    {{!-- materialize --}}
+    {{!-- Include the MaterializeCSS stylesheet from a CDN --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    {{!-- fa icons --}}
+    {{!-- Include the fontawesome stylesheet from a CDN --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css"
         integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />
+    {{!-- Include the custom stylesheet --}}
     <link rel="stylesheet" href="/css/style.css">
     <title>BumpBooks</title>
 </head>
@@ -25,24 +25,27 @@
     {{> _add_btn}}
     <div class="container">
         {{{body}}}
-
     </div>
 
-    {{!-- materialize --}}
+    {{!-- Include the materializeCSS javascript library from a CDN--}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    {{!-- ckeditor --}}
+       {{!-- Include the CKEDITOR javascript library from a CDN--}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.14.1/ckeditor.js"
         integrity="sha256-bEIQpI72w9NJuIVhTLFUF2/8uxl0u5800r8ddViuv+o=" crossorigin="anonymous"></script>
 
     <script>
+        //initialize the materializeCSS side nav component for navigation
         M.Sidenav.init(document.querySelector('.sidenav'))
+        //initialize the materializeCSS form select components for tags and status dropdowns
         M.FormSelect.init(document.querySelector('#tags'))
         M.FormSelect.init(document.querySelector('#status'))
+        //initialize the materializeCSS drop down components
         M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'))
-        
+        //initialize the CKEditor for the body textarea with specific plugins
         CKEDITOR.replace('body', {
             plugins: 'wysiwygarea, toolbar, basicstyles, link'
         })
+        //initialize the CKEditor for the profileDesc textarea with specific plugins
          CKEDITOR.replace('profileDesc', {
             plugins: 'wysiwygarea, toolbar, basicstyles, link'
         })

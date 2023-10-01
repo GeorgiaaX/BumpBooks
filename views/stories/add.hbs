@@ -1,23 +1,25 @@
 <h6>STORYBOARD</h6>
 <h3>Create Story</h3>
 <div class="row">
+    {{!-- form for creating a story --}}
     <form action="/stories" method="POST" class="col s12">
         <div class="row">
+            {{!-- title --}}
             <div class="input-field">
                 <input type="text" id="title" name="title" required>
                 <label for="title">Title</label>
             </div>
         </div>
-
+        {{!-- Description --}}
          <div class="row">
             <div class="input-field">
                 <input type="text" id="description" name="description" maxlength = "250" required>
                 <label for="description">Description</label>
             </div>
         </div>
-
-    
+        {{!-- Tags --}}
          <div class="row">
+            {{!-- Left aligned --}}
             <div class="col s6">
                 <div class="mobile-radio-btns">
                     <label for="tags">Tags </label>
@@ -41,7 +43,7 @@
                     </p>
                 </div>
             </div>
-
+            {{!-- Right Aligned --}}
             <div class="col s6">
                 <div class="mobile-radio-btns">
                     <p>
@@ -71,8 +73,7 @@
                 </div>
             </div>
         </div>
-
-        
+        {{!-- Status --}}
         <div class="row">
             <div class="input-field">
                 <select id="status" name="status">
@@ -82,15 +83,14 @@
                 <label for="status">Status</label>
             </div>
         </div>
-
-
+        {{!-- Text Area --}}
         <div class="row">
             <div class="input-field">
                 <h5>Your Story:</h5>
                 <textarea id="body" name="body" required></textarea>
             </div>
         </div>
-
+        {{!-- Submit --}}
         <div class="row">
             <input type="submit" value="Save" class="btn">
             <a href="/dashboard" class="btn orange">Cancel</a>

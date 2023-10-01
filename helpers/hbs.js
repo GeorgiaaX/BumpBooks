@@ -1,10 +1,13 @@
-const moment = require('moment')
+//import modules and dependencies
+const moment = require('moment') //to display date/time
 
 
 module.exports = {
+    //function to format date using moment
     formatDate: function (date, format) {
         return moment(date).format(format)
     },
+    //function to truncate a string to a particular length and add ellipsis
     truncate: function (str, len) {
         if (str.length > len && str.length > 0) {
             let new_str = str + ' '
@@ -15,9 +18,11 @@ module.exports = {
         }
         return str
     },
+    //function to strip HTML tags from a string
     stripTags: function (input) {
         return input.replace(/<(?:.|\n)*?>/gm, '')
     },
+    //function to display an edit icon to a story if the user is the story owner
     editIcon: function (storyUser, loggedUser, storyId, floating = true) {
       if (storyUser && loggedUser && storyUser._id && loggedUser._id) {
         if (storyUser._id.toString() === loggedUser._id.toString()) {
@@ -33,6 +38,7 @@ module.exports = {
         return '';
       }
     },
+    //function to keep a selected item in a dropdown list
       select: function (selected, options) {
         return options
           .fn(this)
@@ -45,6 +51,7 @@ module.exports = {
             ' selected="selected"$&'
           )
     },
+    //function to increase the index value by one
       addIndex: function(index) {
         return index + 1
       }

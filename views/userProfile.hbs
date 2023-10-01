@@ -1,13 +1,18 @@
+{{!-- authenticated user profile --}}
 <h6>PROFILE</h6>
-
 <div class="card">
     <div class="card-image">
+        {{!-- display profile picture --}}
         <img src = "/images/profile.png">
+        {{!-- edit profile icon --}}
         <a href="/dashboard" class="btn-floating halfway-fab blue"><i class="fas fa-edit fa-small"></i></a>
     </div>
     <div class="card-content center-align">
+             {{!-- user name --}}
             <h1>{{name}}</h1>
+            {{!-- user description --}}
             <p class = "profile-desc left-align">{{stripTags profileDesc}}</p>
+            {{!-- profile edit icon --}}
             <a>{{{editIcon user ../user _id}}}</a>
     </div>
 </div>
@@ -15,26 +20,35 @@
 <h3>Stories</h3>
 <div class="col">
     {{#each stories}}
+    {{!-- loop through each story and display --}}
         <div class="row s12 m4">
             <div class="card">
                 <div class="card-image">
+                    {{!-- display card image with tags --}}
                     <img src = "/images/{{tags}}.png">
                      <span class="card-title">#{{tags}}</span>
+                     {{!-- display edit icon --}}
                     <a>{{{editIcon user ../user _id}}}</a>
                 </div>
                 <div class="card-content">
                     <br>
+                    {{!-- title --}}
                     <h5>{{title}}</h5>
+                    {{!-- creation date --}}
                     <span id="date-title">{{formatDate createdAt 'MMMM Do YYYY'}}</span>
+                    {{!-- truncated description without HTML tags --}}
                     <p>{{stripTags (truncate description 250)}}</p>
+                    {{!-- display bump count --}}
                     <p class="bump-count">{{bumps}} Bumps</p>
                 </div> 
                 <div class="card-action center-align">
+                    {{!-- display button to read text in full --}}
                     <a href="/stories/{{_id}}" class="btn grey">Read</a>
                 </div>  
             </div>
         </div>
     {{else}}
+    {{!-- if there are no stories, display a message with a link to create stories --}}
          <p>You have not created any stories. <a href = "/stories/add">Create</a> one now!</p>
     {{/each}}
 </div>

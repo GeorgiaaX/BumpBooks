@@ -1,43 +1,54 @@
 <h1><img src="/images/bumpbook-logo.png" class="login-brand-img"> Sign up</h1>
     <div class="section login-container">
        {{#if validationErrors}}
+       {{!-- if validation errors display messages --}}
             <div class="alert alert-danger">
                  <ul>
                     {{#each validationErrors}}
+                    {{!-- loop through validation errors and dispaly messages --}}
                         <li>{{this.msg}}</li>
                     {{/each}}
                 </ul>
             </div>
          {{/if}}
 
+{{!-- create form for new User sign up --}}
     <form action="/auth/signUp" method="POST">
         <div class = "input-field">
+            {{!-- displayName input --}}
             <label for = "displayName">Display Name</label>
             <input type="text" id="displayName" name="displayName" required>
         </div>
         <div class = "input-field">
+            {{!-- email input --}}
             <label for="email">Email</label>
             <input type="email" id="email" name="email" required>
         </div>
         <div class = "input-field">
+            {{!-- password input --}}
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required>
         </div>
         <div class="input-field">
+            {{!-- confirm password input --}}
             <label for="confirmPassword">Confirm Password</label>
             <input type="password" id="confirmPassword" name="confirmPassword" required>
         </div>
         <div class="row">
+            {{!-- submit form for new user --}}
             <input type="submit" value="Sign Up" class="login-btn btn">
+            {{!-- link for login if user already has account --}}
             <p >Already have an account? <a href="/login" class = "accountQuery">Login</a></p> 
         </div>
     </form>
 </div>
 <div class="divider"></div>
  <div class="section">
-    {{!-- <a href="/auth/google" class="btn red darken-1 login-btn">
+    {{!-- if google auth
+    <a href="/auth/google" class="btn red darken-1 login-btn">
     <i class="fab fa-google left"></i> Login with Google
     </a> --}}
+    {{!-- link to privacy policy --}}
     <a href="/privacy" class "btn blue">Privacy Policy</a>
 </div>
 

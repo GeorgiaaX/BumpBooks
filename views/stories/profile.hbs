@@ -1,37 +1,51 @@
 <h6>PROFILE</h6>
 <div class="card">
     <div class="card-image">
+        {{!-- display profile image --}}
         <img src = "/images/profile.png">
     </div>
     <div class="card-content center-align">
+        {{!-- display profile authors name --}}
             <h1>{{name}}</h1>
+            {{!-- display profile authors dewscription --}}
             <p class = "profile-desc left-align">{{stripTags profileDesc}}</p>
     </div>
 </div>
-
+{{!-- display profile authors stories --}}
 <h3>Stories</h3>
 <div class="col">
     {{#each stories}}
+    {{!-- loop through each story --}}
         <div class="row s12 m4">
             <div class="card">
+                 {{!-- display image with tags --}}
                 <div class="card-image">
+                        {{!-- Image URL --}}
                         <img src = "/images/{{tags}}.png">
+                        {{!-- tags --}}
                         <span class="card-title">#{{tags}}</span>
+                        {{!-- if the authenticated user id matches the story user Id display an edit Icon --}}
                         <a>{{{editIcon user ../user _id}}}</a>
                     </div>
                 <div class="card-content">
                     <br>
+                    {{!-- display Title --}}
                     <h5>{{title}}</h5>
+                    {{!-- display creation date --}}
                     <span id="date-title">{{formatDate createdAt 'MMMM Do YYYY'}}</span>
+                    {{!-- display truncated description without html tags --}}
                     <p>{{stripTags (truncate description 250)}}</p>
+                    {{!-- display bumps --}}
                     <p class="bump-count">{{bumps}} Bumps</p>
                 </div> 
                 <div class="card-action center-align">
+                    {{!-- display a button to read the full text --}}
                     <a href="/stories/{{_id}}" class="btn grey">Read</a>
                 </div>  
             </div>
         </div>
     {{else}}
+    {{!-- if there are no stories, display a message --}}
         <p>No Stories to Display</p>
     {{/each}}
 </div>
