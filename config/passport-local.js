@@ -33,8 +33,13 @@ module.exports = function (passport) {
     done(null, user.id) //serialize using user ID
   })
   //deserialize user data to retrieve from sessions
-  passport.deserializeUser((id, done) => {
-    //find user in the data base using user ID
-    User.findById(id, (err, user) => done(err, user))
-  })
+  //deserialize user data to retrieve from sessions
+  passport.deserializeUser(async function (id, done) {
+    try {
+        const user = await User.findById(id);
+        done(null, user);
+    } catch (err) {
+        console.error(err);
+    }
+});
 }
