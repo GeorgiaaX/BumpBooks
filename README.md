@@ -4,7 +4,7 @@
 
 The Bump Books Project is a story-sharing web application that invites users to create their own original stories and post them onto the platform for other users to enjoy. The application allows users to create and manage their stories, and users can give bumps to stories that they like. Bumping stories is unique to the application, it is a 'virtual applause' and allows stories to be ranked based on user enjoyment. Stories are displayed in a recent feed, which sorts stories in chronological order based on creation date. Users must sign up and log in to create profiles to be able to participate in the community.
 
-Link to project: https://bumpedbooks.cyclic.cloud/
+Link to project: https://bumpbooks.cyclic.app/
 
 ## How it's made
 
